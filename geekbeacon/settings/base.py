@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'modelcluster',
     'taggit',
 
+    'django_extensions',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -93,12 +94,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'geekbeacon.wsgi.application'
 
+ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=['geekbeacon.org', '0.0.0.0',])
+
+
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    'default': env.db('DATABASE_URL', default='postgres:///geek_beacon'),
+    'default_old': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }

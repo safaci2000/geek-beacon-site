@@ -1,6 +1,16 @@
 version: '2'
 
 services:
+  django: &django
+    image: geekbeacon/django
+    build:
+      context: .
+      dockerfile: ./compose/production/django/Dockerfile
+    depends_on:
+      - postgres
+    env_file: .env
+    command: /gunicorn.sh
+
   postgres:
     image: geekbeacon/postgres
     build:
@@ -10,5 +20,15 @@ services:
     volumes:
       - ./volumes/postgres_data:/var/lib/postgresql/data
       - ./volumes/postgres_backup:/backups
+
+  www:
+    image: geekbeacon/nginx
+    build:
+      context: .
+      dockerfile: ./compose/production/nginx/Dockerfile
     ports:
-      - "5432:5432"
+      - "8000:80"
+    volumes:
+      - ./compose/production/nginx/config:/etc/nginx/conf.d
+    depends_on:
+      - django

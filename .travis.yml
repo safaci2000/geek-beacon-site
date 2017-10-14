@@ -1,6 +1,7 @@
 sudo: true
 install:
   - pip install -r requirements/base.txt
+  - pip install -r requirements/local.txt
   - pip install -r requirements/test.txt
 language: python
 python:
