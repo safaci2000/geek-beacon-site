@@ -11,6 +11,7 @@ services:
       - .:/app
     #env_file: .env
     environment:
+      - DJANGO_ALLOWED_HOSTS=django
       - POSTGRES_USER=geek_beacon
       - POSTGRES_PASSWORD=geek_beacon
       - USE_DOCKER=yes
@@ -30,3 +31,15 @@ services:
       - ./volumes/postgres_backup_local:/backups
 #    ports:
 #      - "5432:5432"
+
+  www:
+    image: geekbeacon/nginx
+    build:
+      context: .
+      dockerfile: ./compose/local/nginx/Dockerfile
+    ports:
+      - "8001:80"
+    volumes:
+      - ./compose/production/nginx/config:/etc/nginx/conf.d
+    depends_on:
+      - django

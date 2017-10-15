@@ -17,10 +17,28 @@ import os
 import environ
 
 
+ROOT_DIR = environ.Path(__file__) - 3  # (geek_beacon/config/settings/base.py - 3 = geek_beacon/)
+APPS_DIR = ROOT_DIR.path('geekbeacon')
+
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
+
+# Load operating system environment variables and then prepare to use them
 env = environ.Env()
+
+# .env file, should load only in development environment
+READ_DOT_ENV_FILE = env.bool('DJANGO_READ_DOT_ENV_FILE', default=False)
+
+if READ_DOT_ENV_FILE:
+    # Operating System Environment variables have precedence over variables defined in the .env file,
+    # that is to say variables from the .env files will only be used if not defined
+    # as environment variables.
+    env_file = str(ROOT_DIR.path('.env'))
+    print('Loading : {}'.format(env_file))
+    env.read_env(env_file)
+    print('The .env file has been loaded. See base.py for more information')
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
@@ -103,12 +121,9 @@ ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=['geekbeacon.org', '0.0
 
 DATABASES = {
     'default': env.db('DATABASE_URL', default='postgres:///geek_beacon'),
-    'default_old': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
 }
 
+DEBUG = env.bool('DJANGO_DEBUG', False)
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
