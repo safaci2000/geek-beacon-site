@@ -67,6 +67,8 @@ INSTALLED_APPS = [
     'modelcluster',
     'taggit',
 
+    'disqus',
+    'django.contrib.sites',
     'django_extensions',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -124,6 +126,9 @@ DATABASES = {
 }
 
 DEBUG = env.bool('DJANGO_DEBUG', False)
+
+DISQUS_API_KEY = env.get_value(var='DISQUS_API_KEY',default='FOOBARFOOBARFOOBARFOOBARFOOBARF')
+DISQUS_WEBSITE_SHORTNAME = env.get_value(var='DISQUS_WEBSITE_SHORTNAME',default='Geek Beacon')
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/

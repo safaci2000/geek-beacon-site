@@ -13,6 +13,7 @@ services:
       - POSTGRES_USER=geek_beacon
       - POSTGRES_PASSWORD=geek_beacon
       - USE_DOCKER=yes
+      - DISQUS_API_KEY=woot
     ports:
       - "8000:8000"
     command: /start.sh
