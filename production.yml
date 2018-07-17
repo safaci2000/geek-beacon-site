@@ -8,6 +8,7 @@ services:
       dockerfile: ./compose/production/django/Dockerfile
     depends_on:
       - postgres
+      - rabbit
     env_file: .env
     command: /gunicorn.sh
 
@@ -32,3 +33,23 @@ services:
       - ./compose/production/nginx/config:/etc/nginx/conf.d
     depends_on:
       - django
+  memcached:
+    image: memcached:latest
+  rabbit:
+    image: rabbitmq:latest
+    env_file: .env
+  celeryworker:
+    <<: *django
+    depends_on:
+      - redis
+      - postgres
+    ports: []
+    command: /start-celeryworker.sh
+  celerybeat:
+    # https://github.com/docker/compose/issues/3220
+    <<: *django
+    depends_on:
+      - redis
+      - postgres
+    ports: []
+    command: /start-celerybeat.sh
