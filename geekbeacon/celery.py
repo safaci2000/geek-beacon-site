@@ -5,8 +5,10 @@ from celery import Celery
 # set the default Django settings module for the 'celery' program.
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'geekbeacon.settings.dev')
 
-app = Celery('proj',
-             broker='amqp://rabbit//')
+broker = os.environ.get('BROKER_URL', 'amqp://rabbit//')
+print(broker)
+
+app = Celery('proj', broker=broker)
 
 # Using a string here means the worker doesn't have to serialize
 # the configuration object to child processes.
