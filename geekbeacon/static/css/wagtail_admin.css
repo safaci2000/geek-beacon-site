@@ -1,0 +1,42 @@
+.button {
+    /*background-color: #4CAF50;*/
+    color: #503788;
+    /*border-color: #4CAF50;*/
+}
+
+.nav-wrapper, .nav-wrapper .inner {
+    background: #2D4A74;
+}
+
+.nav-search input {
+    cursor: pointer;
+    border: 1px solid #4d4d4d;
+    /*background-color: #1275b7;*/
+    background-color: #a7a8a8;
+    color: #503788;
+}
+
+.page-explorer .listing .index {
+    color: #4d4d4d;
+    background-color: #1275b7;
+}
+
+.breadcrumb {
+    padding-top: 0;
+    background: #2D4A74;
+    margin-left: -50px;
+    margin-right: -50px;
+}
+
+.page-explorer .listing .index {
+    color: #503788;
+    /*background-color: #1275b7;*/
+}
+
+
+.Draftail-Editor {
+    height: 400px;  /* don't hard code this, but for now this is an example on how to expand the input box by default  */
+
+}
+
+
