@@ -20,6 +20,7 @@ from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel
 from wagtail.core.models import Page
 import json
 
+from blog.admin import BlogCategory
 from blog.models.blog_tags import BlogPostTag
 
 
