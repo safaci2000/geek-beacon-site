@@ -2,7 +2,7 @@ version: '2'
 
 services:
   django: &django
-    image: geekbeacon/django
+    image: geekbeacon/django:prod
     build:
       context: .
       dockerfile: ./compose/production/django/Dockerfile
@@ -13,7 +13,7 @@ services:
     command: /gunicorn.sh
 
   postgres:
-    image: geekbeacon/postgres
+    image: geekbeacon/postgres:prod
     build:
       context: .
       dockerfile: ./compose/production/postgres/Dockerfile
@@ -23,7 +23,7 @@ services:
       - ./volumes/postgres_backup:/backups
 
   www:
-    image: geekbeacon/nginx
+    image: geekbeacon/nginx:prod
     build:
       context: .
       dockerfile: ./compose/production/nginx/Dockerfile
