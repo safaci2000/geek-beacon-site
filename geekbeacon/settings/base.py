@@ -74,6 +74,8 @@ INSTALLED_APPS = [
     'taggit',
  
     'django_extensions',
+    'jet',
+    'jet.dashboard',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

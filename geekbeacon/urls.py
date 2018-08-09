@@ -13,6 +13,8 @@ from search import views as search_views
 
 urlpatterns = [
 #    url(r'^django-admin/', include(admin.site.urls)),
+    url(r'^jet/', include('jet.urls', 'jet')),  # Django JET URLS
+    url(r'^jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),  # Django JET dashboard URLS
     url(r'^django-admin/', admin.site.urls),
 
     url(r'^admin/', include(wagtailadmin_urls)),
