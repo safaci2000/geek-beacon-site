@@ -13,3 +13,4 @@ amqp<3.0,>=2.1.4
 python-memcached<2.0,>=1.59
 wagtail-metadata==2.0.0
 kombu==4.1.0
+wagtailstreamforms>=2

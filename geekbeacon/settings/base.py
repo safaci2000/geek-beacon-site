@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     'wagtail.admin',
     'wagtail.core',
     'wagtail_feeds',
+    'wagtailstreamforms',
 
 
     'modelcluster',
