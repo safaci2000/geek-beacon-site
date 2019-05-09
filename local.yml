@@ -45,8 +45,8 @@ services:
   rabbit:
     image: rabbitmq:latest
     environment:
-      - RABBITMQ_DEFAULT_USER = admin
-      - RABBITMQ_DEFAULT_PASS = mypass
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=mypass
   celeryworker:
     <<: *django
     depends_on:
